@@ -1,0 +1,49 @@
+<mvc:View
+    controllerName="vaishnaviapp1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="shubham trains vaishnavi"
+    >
+        <content>
+            <IconTabBar
+                class="sapUiSmallMarginBottom sapUiResponsiveContentPadding"
+            >
+                <items>
+                    <IconTabFilter
+                     id="idIconTabFilter"
+                        key="comment"
+                        text="Comment"
+                        icon="sap-icon://comment"
+                    >
+                        <FeedInput
+                            id="idFeedInput"
+                             post="onPost"
+                           
+                            class="sapUiSmallMarginTopBottom"
+                        />
+                        <List
+                            id="idList"
+                            mode="SingleSelectMaster"
+                            items="{comment>/results}"
+                        >
+                            <items>
+                                <StandardListItem
+                                 id="idStandardListItem"
+                                    title="{comment>Comment}"
+                                    description="{comment>Date}({comment>Time})"
+                                    icon="sap-icon://thing-type"
+                                    info="{comment>EmpName}"
+
+                                />
+                            </items>
+                        </List>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>

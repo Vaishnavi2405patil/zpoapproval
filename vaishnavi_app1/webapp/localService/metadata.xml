@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="YDOCUMENT_APPROVAL_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="master" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CurrentApprover"/>
+                </Key>
+                <Property Name="CurrentApprover" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Current Approver" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Docno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DocName" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="Document Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SearchTerm" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Document Search Term" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DMSdocNo" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="DMS Document No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CurrentStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreateDate" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Create Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Action" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Action" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Remark" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Action" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Level" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Level" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="QueryByUser" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Query by User" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="getAttachment" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="DMS Doc No + File ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="getAttachmentValue" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DocNo"/>
+                </Key>
+                <Property Name="DocNo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FileID" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="File ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FileValue" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="File Vaue" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FileType" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="File Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="getMatrix" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DocNo"/>
+                </Key>
+                <Property Name="DocNo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Level" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Level" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Approver" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Approver" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="Email" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Date" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Time" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Comments" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Comments" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="getAttachmentName" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DocNo"/>
+                </Key>
+                <Property Name="DocNo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DmsNo" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="DMS Document No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FileID" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Attachment File Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FileValue" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="getComment" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DocNo"/>
+                </Key>
+                <Property Name="DocNo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="User" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Date" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Time" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmpName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="EmployeeName" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Comment" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Document Attachment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="getInfo" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DocNo"/>
+                </Key>
+                <Property Name="DocNo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Comment" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Document Attachment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="YDOCUMENT_APPROVAL_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="masterSet" EntityType="YDOCUMENT_APPROVAL_SRV.master" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="getAttachmentCollection" EntityType="YDOCUMENT_APPROVAL_SRV.getAttachment" sap:content-version="1"/>
+                <EntitySet Name="getAttachmentValueSet" EntityType="YDOCUMENT_APPROVAL_SRV.getAttachmentValue" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="getMatrixSet" EntityType="YDOCUMENT_APPROVAL_SRV.getMatrix" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GetAttachmentNameSet" EntityType="YDOCUMENT_APPROVAL_SRV.getAttachmentName" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="getCommentSet" EntityType="YDOCUMENT_APPROVAL_SRV.getComment" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="getInfoSet" EntityType="YDOCUMENT_APPROVAL_SRV.getInfo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://vedevs4pas.vecvnet.com:8000/sap/opu/odata/sap/YDOCUMENT_APPROVAL_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://vedevs4pas.vecvnet.com:8000/sap/opu/odata/sap/YDOCUMENT_APPROVAL_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
