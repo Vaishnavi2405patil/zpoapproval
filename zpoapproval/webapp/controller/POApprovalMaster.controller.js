@@ -4,7 +4,7 @@ sap.ui.define([
 function (Controller) {
     "use strict";
 
-    return Controller.extend("zpoapproval.controller.View1", {
+    return Controller.extend("zpoapproval.controller.POApprovalMaster", {
         onInit: function () {
 
         }
