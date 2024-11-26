@@ -1,11 +1,173 @@
 <mvc:View
-	controllerName=""
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m"
-	xmlns:c="sap.ui.core"
-	displayBlock="true"
-	height="100%"
-	busyIndicatorDelay="0"
+    controllerName="zpoapproval.controller.POApprovalDetail"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:semantic="sap.m.semantic"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:upload="sap.m.upload"
+    xmlns:u="sap.ui.unified"
 >
-
+    <App>
+        <pages>
+            <Page
+                title="Volvo Eicher Commercial Vehicles Purchase Order Approval"
+            >
+                <content>
+                    <Text
+                        id="idViewForPOList"
+                        visible="false"
+                    />
+                    <Text
+                        id="idPONoTemp"
+                        visible="false"
+                    />
+                    <Text
+                        id="idToBeApproved"
+                        visible="false"
+                    />
+                    <Text
+                        id="idAlreadyApproved"
+                        visible="false"
+                    />
+                    <Text
+                        id="idForRev1Dept"
+                        visible="false"
+                    />
+                    <ObjectHeader visible="false">
+                        <statuses>
+                            <ObjectStatus id="objPrice" />
+                        </statuses>
+                        <ObjectAttribute
+                            id="objcmp"
+                            class="objectattr"
+                        />
+                    </ObjectHeader>
+                    <IconTabBar
+                        id="idIconTabBarNoIcons"
+                        expandable="false"
+                        select="handleIconTabBarSelect"
+                        expanded="true"
+                        class="sapUiResponsiveContentPadding"
+                        stretchContentHeight="true"
+                    >
+                        <items>
+                            <IconTabFilter
+                                icon="sap-icon://pdf-attachment"
+                                text="Cover Note"
+                                key="CoverNote"
+                            >
+                                <core:HTML id="idFrame" />
+                            </IconTabFilter>
+                            <IconTabFilter
+                                icon="sap-icon://pdf-attachment"
+                                text="Purch.Order/Change"
+                                key="PurchaseOrder"
+                            >
+                                <core:HTML id="idFramePO" />
+                            </IconTabFilter>
+                            <IconTabFilter
+                                text="Cost Details"
+                                key="Attachments"
+                                icon="sap-icon://attachment"
+                            >
+                                <ScrollContainer
+                                    height="100%"
+                                    width="100%"
+                                    vertical="true"
+                                    focusable="true"
+                                />
+                            </IconTabFilter>
+                            <IconTabFilter
+                                text="Query History"
+                                key="QueryHistory"
+                                icon="sap-icon://history"
+                            >
+                                <Table
+                                    id="tblQueryHistor"
+                                    items="{path:'/results'}"
+                                    inset="false"
+                                    growing="true"
+                                    growingThreshold="10"
+                                    growingScrollToLoad="true"
+                                    width="auto"
+                                >
+                                    <columns>
+                                        <Column width="15%">
+                                            <Text
+                                                text="From"
+                                                class="tblHeader"
+                                            />
+                                        </Column>
+                                        <Column width="15%">
+                                            <Text
+                                                text="To"
+                                                class="tblHeader"
+                                            />
+                                        </Column>
+                                        <Column width="15%">
+                                            <Text
+                                                text="Date and Time"
+                                                class="tblHeader"
+                                            />
+                                        </Column>
+                                        <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true"
+                                            width="15%"
+                                        >
+                                            <Text
+                                                text="Status"
+                                                class="tblHeader"
+                                            />
+                                        </Column>
+                                        <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true"
+                                        >
+                                            <Text
+                                                text="Query"
+                                                class="tblHeader"
+                                            />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem press="onEdit">
+                                            <cells>
+                                                <Text text="{Query_From}" />
+                                                <Text text="{Query_To}" />
+                                                <Text
+                                                    text="{Query_Date} {Query_Time}"
+                                                />
+                                                <Text text="{Query_Status}" />
+                                                <Text text="{Query}" />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </IconTabFilter>
+                            <IconTabFilter text="Appr.Comments" key="Comments" icon="sap-icon://comment">
+                            <!-- <Table id="tblComment"  items="{path:'/results'}"  inset="false" growing="true" growingThreshold="10" growingScrollToLoad="true"  width="auto">
+                            </Table> -->
+                             
+                           
+                            </IconTabFilter>
+                            <IconTabFilter  text="General" key="General" icon="sap-icon://message-information">
+                              <l:Grid class="sapUiSmallMarginTop" width="auto" position="Center" containerQuery="true"  vSpacing="2"  defaultSpan="XL2 L4">
+                               <l:content>
+                               <VBox >
+                               <f:SimpleForm id="SimpleFormChange354wide"  editable="false" layout="ResponsiveGridLayout"  labelSpanXL="4" labelSpanL="3"  width="800px" 	labelSpanM="4"  labelSpanS="12"  adjustLabelSpan="false"  emptySpanXL="0"  >
+                                 
+                               </f:SimpleForm></VBox>
+                               </l:content>
+                              </l:Grid>
+                            </IconTabFilter>
+                        </items>
+                    </IconTabBar>
+                </content>
+            </Page>
+        </pages>
+    </App>
 </mvc:View>

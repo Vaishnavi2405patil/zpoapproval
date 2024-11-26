@@ -2,13 +2,15 @@ sap.ui.define(
     [
         "sap/ui/core/mvc/Controller"
     ],
-    function(BaseController) {
+    function(Controller) {
       "use strict";
   
-      return BaseController.extend("zpoapproval.controller.App", {
+      return Controller.extend("zpoapproval.controller.SApp", {
         onInit: function() {
         }
       });
     }
   );
   
+
+ 

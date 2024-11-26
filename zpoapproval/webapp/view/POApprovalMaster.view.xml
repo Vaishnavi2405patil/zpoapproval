@@ -1,14 +1,15 @@
 <mvc:View
     controllerName="zpoapproval.controller.POApprovalMaster"
     xmlns:mvc="sap.ui.core.mvc"
-    displayBlock="true"
+    xmlns:core="sap.ui.core"
     xmlns="sap.m"
+    xmlns:html="http://www.w3.org/1999/xhtml"
 >
-    <App id="idApp">
+    <App>
         <pages>
             <Page
                 id="idPage"
-                title=" Vaishnavi"
+                title="My Purchase Orders"
             >
                 <subHeader>
                     <Toolbar>
@@ -20,6 +21,7 @@
                         <Button
                             id="btnfilter"
                             icon="sap-icon://filter"
+                            tooltip="{i18n>refreshButtonTooltip}"
                             press="handleOpenDialog"
                         />
                     </Toolbar>
@@ -77,7 +79,7 @@
                                 visible="true"
                             >
                                 <List
-                                    items=""
+                                    items="{path:'/results',sorter: [{ path: 'PoType', descending: false},{ path: 'Rush', descending: true},{ path: 'Rush_Date', descending: true},{ path: 'Rush_Time', descending: true},{ path: 'Received_Time', descending: true},{ path: 'Received_Date', descending: true}]}"
                                     noDataText="No PO Approve"
                                     id="listPODevAppr"
                                     mode="SingleSelectMaster"
@@ -90,7 +92,7 @@
                                 >
                                     <items>
                                         <ObjectListItem
-                                            title=""
+                                           title="{ path: 'PoType', formatter: 'POApproval.ZPOApproval.utils.Formatter.status' }:{PO_No}"
                                             class="clsListDevAppr"
                                             type="Navigation"
                                             press="onListItemPres"
@@ -117,7 +119,7 @@
                                                     class="clsDocType"
                                                 />
                                                 <ObjectAttribute
-                                                    text="{{Plan}"
+                                                    text="{Plan}"
                                                     class="PlantAttribute"
                                                 />
                                                 <ObjectAttribute
@@ -154,7 +156,7 @@
                                 key="ToBeApprove"
                             >
                                 <List
-                                    items=""
+                                   	items="{path:'/results',sorter: [{ path: 'PoType', descending: false},{ path: 'Rush', descending: true},{ path: 'Rush_Date', descending: true},{ path: 'Rush_Time', descending: true},{ path: 'Received_Date', descending: true},{ path: 'Received_Time', descending: true}]}"
                                     noDataText="No PO for Approval"
                                     id="listPO"
                                     mode="SingleSelectMaster"
@@ -166,7 +168,8 @@
                                 >
                                     <items>
                                         <ObjectListItem
-                                            title=""
+                                          
+                                             title="{ path: 'PoType', formatter: 'POApproval.ZPOApproval.utils.Formatter.status' }:{PO_No}"
                                             type="Active"
                                             press="onListItemPress"
                                             number="{PO_Amount}"
@@ -229,7 +232,8 @@
                                 key="AlreadyApproved"
                             >
                                 <List
-                                    items=""
+                                	items="{path:'/results',sorter: [{ path: 'PoType', descending: false},{ path: 'Rush', descending: true},{ path: 'Rush_Date', descending: false},{ path: 'Rush_Time', descending: false},{ path: 'Received_Time', descending: false},{ path: 'Received_Date', descending: false}]}"
+                                  
                                     noDataText="No PO Approved"
                                     id="listPOAlrdyApproved"
                                     mode="SingleSelectMaster"
@@ -240,7 +244,7 @@
                                 >
                                     <items>
                                         <ObjectListItem
-                                            title=""
+                                            title="{ path: 'PoType', formatter: 'POApproval.ZPOApproval.utils.Formatter.status' }:{PO_No}"
                                             type="Active"
                                             press="onListItemPress"
                                             number="{PO_Amount}"

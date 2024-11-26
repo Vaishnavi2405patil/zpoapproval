@@ -16,7 +16,7 @@
       "toolsId": "69d72e19-dbdd-4d1c-ba76-6b5fc0bcaa86"
     },
     "dataSources": {
-      "mainService": {
+      "ZVECV_PURCHASE_ORDER_APPROVAL_SRV": {
         "uri": "/sap/opu/odata/sap/ZVECV_PURCHASE_ORDER_APPROVAL_SRV/",
         "type": "OData",
         "settings": {
@@ -44,7 +44,7 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.96.6",
       "libs": {
@@ -64,9 +64,13 @@
         }
       },
       "": {
-        "dataSource": "mainService",
-        "preload": true,
-        "settings": {}
+        "type": "sap.ui.model.odata.v2.ODataModel",
+          "settings":{	"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"},
+        "dataSource": "ZVECV_PURCHASE_ORDER_APPROVAL_SRV",
+        "preload": true
+       
       }
     },
     "resources": {
@@ -83,33 +87,107 @@
         "async": true,
         "viewPath": "zpoapproval.view",
         "controlAggregation": "pages",
-        "controlId": "app",
+        "controlId": "App",
         "clearControlAggregation": false
       },
       "routes": [
         {
-          "name": "RouteView1",
-          "pattern": ":?query:",
+          "pattern": "",
+          "name": "FirstPage",
           "target": [
-            "TargetView1"
+            	"POApprovalMaster",
+						"POApprovalDetail"
           ]
+        },
+        {
+          "pattern": "FirstPage1",
+          "name": "FirstPage1",
+          "target":[	"POApprovalMaster"]
+        },
+        {
+          "name": "POApprovalDetail",
+          "pattern":  "POApprovalDetail/{PO_No}/POApprovalDetail1/{PO_Status}/POApprovalDetailsid/{Sid}/Dept/{Dept}/{Type}",
+          "target":[	"POApprovalMaster",
+          "POApprovalDetail"]
+
+        },{
+          "name": "POApprovalDetailChange",
+          "pattern": "POApprovalDetail/{PO_No}/POApprovalDetailsid/{Sid}/Dept/{Dept}/{Type}",
+          "target":[
+            	"POApprovalMaster",
+						"POApprovalDetail"
+          ]
+        },{
+          "name": "POApprovalDetailForTab",
+          "pattern": "POApprovalDetail/{PO_No}/POApprovalDetailsid/{Sid}/POApprovalDetailALP/{TemPStatusforAlApp}/{Type}",
+          "target":[
+            	"POApprovalMaster",
+						"POApprovalDetail"
+          ]
+        },{
+          "name": "POApprovalDetailForDevAppr",
+          "pattern": "POApprovalDetail/{PO_No}/POApprovalDetailsid/{Sid}/POApprovalDetailDevA/{TemPStatusforAlApp",
+          "target":[	"POApprovalMaster",
+          "POApprovalDetail"]
+        },{
+          "name": "poapprovaldetail",
+          "pattern": "poapprovaldetail/{status}",
+          "target":[	"POApprovalMaster",
+          "POApprovalDetail"]
+        },{
+          "name": "POApprovalMaster",
+          "pattern": "POApprovalMaster",
+          "target":[	"POApprovalMaster",
+          "POApprovalDetail"]
+        },{
+          "name": "POApprovalMaster",
+          "pattern": "POApprovalMaster/{TempStatus}",
+          "target":[
+            	"POApprovalMaster",
+						"POApprovalDetail"
+          ]
+        },{
+          "name": "RouteSApp",
+          "pattern": "RouteSApp",
+          "target":[	"POApprovalMaster",
+          "POApprovalDetail"]
         }
       ],
       "targets": {
-        "TargetView1": {
+        "TargetSApp": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "View1",
-          "viewName": "View1"
+          "viewId": "App",
+          "viewName": "SApp"
+        },
+        "POApprovalMaster":{
+          "viewName": "POApprovalMaster",
+          "controlAggregation": "masterPages"
+          	
+        },
+        "POApprovalDetail":{
+          "viewName": "POApprovalDetail",
+           "controlAggregation": "detailPages"
+          
         }
       }
     },
+    	"_version": "1.2.0",
     "rootView": {
-      "viewName": "zpoapproval.view.App",
+      "viewName": "zpoapproval.view.SApp",
       "type": "XML",
       "async": true,
       "id": "App"
+    },
+    "sap.platform.hcp": {
+      "uri": "webapp",
+      "_version": "1.1.0"
+    },
+    "sap.platform.abap": {
+      "uri": "/sap/bc/ui5_ui5/sap/zpoapproval",
+      "_version": "1.1.0"
     }
   }
+ 
 }
