@@ -1,0 +1,185 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+>
+    <Dialog
+        noDataText="No Products Found"
+        contentWidth="700px"
+        horizontalScrolling="false"
+    >
+        <VBox class="sapUiSmallMargin">
+            <f:Form
+                editable="true"
+                width="1000px"
+                id="FormToolbar"
+                ariaLabelledBy="Title1"
+            >
+                <f:layout>
+                    <f:ResponsiveGridLayout
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="3"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="4"
+                        emptySpanL="4"
+                        emptySpanM="4"
+                        emptySpanS="0"
+                        columnsXL="1"
+                        columnsL="1"
+                        columnsM="1"
+                        singleContainerFullSize="false"
+                    />
+                </f:layout>
+                <f:formContainers>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="Query ">
+                                <f:fields>
+                                    <ComboBox
+                                        id="idQuery"
+                                        change="OnChangeQueryText"
+                                        width="70%"
+                                        class="ClassForHeight"
+                                    >
+                                        <c:Item
+                                            key="Others"
+                                            text="Other Reasons - 150 character space to write"
+                                            id="idOthers"
+                                        />
+                                        <c:Item
+                                            key="Query1"
+                                            text="Incorrect GL/CCN"
+                                        />
+                                        <c:Item
+                                            key="Query2"
+                                            text="Revenue Budget Not Available"
+                                        />
+                                        <c:Item
+                                            key="Query3"
+                                            text="Not in Provision"
+                                        />
+                                        <c:Item
+                                            key="Query4"
+                                            text="Wrong Budget code considered"
+                                        />
+                                        <c:Item
+                                            key="Query6"
+                                            text="Approvals are not in line with Authority norms"
+                                        />
+                                        <c:Item
+                                            key="Query7"
+                                            text="NAP approval not attached"
+                                        />
+                                        <c:Item
+                                            key="Query8"
+                                            text="Quotation not attached"
+                                        />
+                                        <c:Item
+                                            key="Query9"
+                                            text="Part not in BOM"
+                                        />
+                                        <c:Item
+                                            key="Query10"
+                                            text="HSN not updated in part"
+                                        />
+                                        <c:Item
+                                            key="Query11"
+                                            text="OE and OES prices are not same"
+                                        />
+                                        <c:Item
+                                            key="Query12"
+                                            text="Same Part PO already available in same vendor"
+                                        />
+                                        <c:Item
+                                            key="Query13"
+                                            text="PR not available"
+                                        />
+                                        <c:Item
+                                            key="Query14"
+                                            text="Incorrect TDS Code"
+                                        />
+                                        <c:Item
+                                            key="Query15"
+                                            text="Single Source Justification Not Attached"
+                                        />
+                                        <c:Item
+                                            key="Query16"
+                                            text="Wrong PO Reference"
+                                        />
+                                        <c:Item
+                                            key="Query17"
+                                            text="Reference PO should be within one year"
+                                        />
+                                        <c:Item
+                                            key="Query18"
+                                            text="Approval Missing - Material Controller"
+                                        />
+                                        <c:Item
+                                            key="Query19"
+                                            text="Approval Missing - PCM Team"
+                                        />
+                                        <c:Item
+                                            key="Query20"
+                                            text="Approval Missing - Import Team"
+                                        />
+                                        <c:Item
+                                            key="Query21"
+                                            text="Approval Missing - NAP"
+                                        />
+                                        <c:Item
+                                            key="Query22"
+                                            text="Approval Missing - Aftermarket"
+                                        />
+                                        <c:Item
+                                            key="Query23"
+                                            text="Approval Missing - Logistic"
+                                        />
+                                        <c:Item
+                                            key="Query24"
+                                            text="Approval Missing - Inventory controller"
+                                        />
+                                    </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement
+                                label="To User"
+                                class="clsBrkEmailAdd"
+                            >
+                                <f:fields>
+                                    <HBox>
+                                        <Input
+                                            id="fetchUse"
+                                            class="sapUiSmallMarginBottom"
+                                            type="Text"
+                                            placeholder="Enter User Name"
+                                            showValueHelp="true"
+                                            valueHelpIconSrc="sap-icon://employee-lookup"
+                                            valueHelpRequest="fetchUserValueHelp"
+                                        />
+                                    </HBox>
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+        </VBox>
+        <buttons>
+            <Button
+                text="Submit Query"
+                icon="sap-icon://accept"
+                type="Emphasized"
+                press="OnSubmitQuery"
+            />
+            <Button
+                text="Cancel"
+                type="Reject"
+                icon="sap-icon://decline"
+                press="OnCancelQuery"
+            />
+        </buttons>
+    </Dialog>
+</c:FragmentDefinition>

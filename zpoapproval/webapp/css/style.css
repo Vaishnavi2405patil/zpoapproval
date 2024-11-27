@@ -88,9 +88,9 @@ div#__xmlview1--SimpleFormChange354wide--Form--Grid {
     line-height: .9375rem;
     overflow: hidden;
     padding: 0.375rem 0 0;
-    position: relative;
+    position: relative; 
     text-overflow: ellipsis;
-    width: 5rem;
+    width: 5rem; 
     color: #333;
     text-shadow: 0 1px rgba(255,255,255,0.5);
     font-weight: bold;
@@ -110,44 +110,47 @@ div#__xmlview1--SimpleFormChange354wide--Form--Grid {
 
 /* for tab icon background*/
 .sapMITBSelected .sapMITBFilterDefault {
-    background: #e00017;
+    background: #e00017; 
+   
     color: white;
 }
 
 /*for icon tab inner icon red*/
 .sapMITBItem .sapMITBFilterIcon, .sapMITBTextOnly .sapMITBItem .sapMITBText, .sapMITBItem.sapMITBAll {
     position: relative;
-    color: #e24040;
+    color: #e24040; 
+    
 }
 
 
 /*for tab background*/
 .sapUiMedia-Std-Tablet .sapMITH, .sapUiMedia-Std-Desktop .sapMITH {
-    padding: 0 2rem; 
-     
-    background-color: #0c0c61;
-   
+    padding: 0 2rem;
+     background-color: #0c0c61; 
     
 }
 
 div#__container1--Grid {
-    width: 493px;
+    width: 493px; 
+    
 }
 
 div#__container2--Grid {
-    width: 350px;
+     width: 350px; 
+    
 }
 
 
 /*for general tab form */
 div#__container1--Grid {
-    width: 373px;
+    width: 373px; 
+    
 }
 
 
 .sapMITBFilter .sapMITBText {
-    color: white;
-    font-weight: bold;
+    color: white; 
+  font-weight: bold;
 }
 
 /*for Filter View */

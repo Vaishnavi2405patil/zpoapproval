@@ -1,0 +1,68 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+>
+    <Dialog
+        noDataText="No Products Found"
+        contentWidth="700px"
+        horizontalScrolling="false"
+    >
+        <VBox class="sapUiSmallMargin">
+            <Text
+                id="txtgenericuser"
+                visible="false"
+            />
+            <f:Form
+                editable="true"
+                ariaLabelledBy="Title1"
+            >
+                <f:layout>
+                    <f:ResponsiveGridLayout
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="3"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="4"
+                        emptySpanL="4"
+                        emptySpanM="4"
+                        emptySpanS="0"
+                        columnsXL="1"
+                        columnsL="1"
+                        columnsM="1"
+                        singleContainerFullSize="false"
+                    />
+                </f:layout>
+                <f:formContainers>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement
+                                label="Do you really want to submit the Approval ?"
+                            />
+                            <f:FormElement
+                                label="OTP"
+                                id="lblotp"
+                                visible="false"
+                            >
+                                <f:fields>
+                                    <TextArea
+                                        id="idOTP"
+                                        width="90%"
+                                        visible="false"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+        </VBox>
+        <buttons>
+            <Button text="Yes! Submit Approval" icon="sap-icon://accept" type="Emphasized" press="OnSubmitApproval"></Button>
+            <Button text="Cancel" type="Reject" icon="sap-icon://decline" press="OnCancelApprove"></Button>
+        </buttons>
+        
+    </Dialog>
+</c:FragmentDefinition>

@@ -1,0 +1,78 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+>
+    <Dialog
+        noDataText="No Products Found"
+        contentWidth="700px"
+        contentHeight="200px"
+        horizontalScrolling="false"
+    >
+        <VBox class="sapUiSmallMargin">
+            <form:Form
+                id="FormReviewButton"
+                editable="true"
+                ariaLabelledBy="Title1"
+            >
+                <form:layout>
+                    <form:ResponsiveGridLayout
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="3"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="4"
+                        emptySpanL="4"
+                        emptySpanM="4"
+                        emptySpanS="0"
+                        columnsXL="1"
+                        columnsL="1"
+                        columnsM="1"
+                        singleContainerFullSize="false"
+                    />
+                </form:layout>
+                <form:formContainers>
+                    <form:FormContainer>
+                        <form:formElements>
+                            <form:FormElement label="Review Comments">
+                                <form:fields>
+                                    <TextArea
+                                        id="idReviewComments"
+                                        width="90%"
+                                    />
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+            </form:Form>
+        </VBox>
+        <buttons>
+            <Button
+                text="Submit Review"
+                icon="sap-icon://accept"
+                type="Emphasized"
+                press="OnSubmitReview"
+            >
+                <customData>
+                    <c:CustomData
+                        key="multi"
+                        value="true"
+                    />
+                    <c:CustomData
+                        key="remember"
+                        value="true"
+                    />
+                </customData>
+            </Button>
+            <Button
+                text="Cancel"
+                type="Reject"
+                icon="sap-icon://decline"
+                press="OnCancelReview"
+            />
+        </buttons>
+    </Dialog>
+</c:FragmentDefinition>

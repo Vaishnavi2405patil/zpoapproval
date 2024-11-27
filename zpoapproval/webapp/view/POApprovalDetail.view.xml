@@ -78,7 +78,10 @@
                                     width="100%"
                                     vertical="true"
                                     focusable="true"
-                                />
+                                >
+
+                                
+                                </ScrollContainer>
                             </IconTabFilter>
                             <IconTabFilter
                                 text="Query History"
@@ -148,25 +151,218 @@
                                     </items>
                                 </Table>
                             </IconTabFilter>
-                            <IconTabFilter text="Appr.Comments" key="Comments" icon="sap-icon://comment">
-                            <!-- <Table id="tblComment"  items="{path:'/results'}"  inset="false" growing="true" growingThreshold="10" growingScrollToLoad="true"  width="auto">
-                            </Table> -->
-                             
-                           
+                            <IconTabFilter
+                                text="Appr.Comments"
+                                key="Comments"
+                                icon="sap-icon://comment"
+                            >
+                                <Table
+                                    id="tblComments"
+                                    items="{path:'/results'}"
+                                    inset="false"
+                                    growing="true"
+                                    growingThreshold="10"
+                                    growingScrollToLoad="true"
+                                    width="auto"
+                                >
+                                    <columns>
+                                        <Column width="15%">
+                                            <Text
+                                                text="User"
+                                                class="tblHeader"
+                                            />
+                                        </Column>
+                                        <Column width="15%">
+                                            <Text
+                                                text="Date and Time"
+                                                class="tblHeader"
+                                            />
+                                        </Column>
+                                        <Column width="15%">
+                                            <Text
+                                                text="Status"
+                                                class="tblHeader"
+                                            />
+                                        </Column>
+                                        <Column
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true"
+                                        >
+                                            <Text
+                                                text="Approval Comments"
+                                                class="tblHeader"
+                                            />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem press="onEdit">
+                                            <cells>
+                                                <Text text="{UserName}" />
+                                                <Text
+                                                    text="{POApprovalDate} {POApprovalTime}"
+                                                />
+                                                <Text text="{POStatus}" />
+                                                <Text text="{POComment}" />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
                             </IconTabFilter>
-                            <IconTabFilter  text="General" key="General" icon="sap-icon://message-information">
-                              <l:Grid class="sapUiSmallMarginTop" width="auto" position="Center" containerQuery="true"  vSpacing="2"  defaultSpan="XL2 L4">
-                               <l:content>
-                               <VBox >
-                               <f:SimpleForm id="SimpleFormChange354wide"  editable="false" layout="ResponsiveGridLayout"  labelSpanXL="4" labelSpanL="3"  width="800px" 	labelSpanM="4"  labelSpanS="12"  adjustLabelSpan="false"  emptySpanXL="0"  >
-                                 
-                               </f:SimpleForm></VBox>
-                               </l:content>
-                              </l:Grid>
+                            <IconTabFilter
+                                text="General"
+                                key="General"
+                                icon="sap-icon://message-information"
+                            >
+                                <l:Grid
+                                    class="sapUiSmallMarginTop"
+                                    width="auto"
+                                    position="Center"
+                                    containerQuery="true"
+                                    vSpacing="2"
+                                    defaultSpan="XL2 L4"
+                                >
+                                    <l:content>
+                                        <VBox>
+                                            <f:SimpleForm
+                                                id="SimpleFormChange354wide1"
+                                                editable="false"
+                                                layout="ResponsiveGridLayout"
+                                                labelSpanXL="4"
+                                                labelSpanL="3"
+                                                width="800px"
+                                                labelSpanM="4"
+                                                labelSpanS="12"
+                                                adjustLabelSpan="false"
+                                                emptySpanXL="0"
+                                                emptySpanL="4"
+                                                emptySpanM="0"
+                                                emptySpanS="0"
+                                                columnsXL="2"
+                                                columnsL="2"
+                                                columnsM="2"
+                                                singleContainerFullSize="false"
+                                            >
+                                                <f:content>
+                                                    <Text
+                                                        id="txtPONO"
+                                                        visible="false"
+                                                    />
+                                                    <Label
+                                                        text="PO No / Chg No"
+                                                        id="lblPUrOrNo"
+                                                    />
+                                                    <Text id="PurOrdNo" />
+                                                    <Label
+                                                        text="PO Description"
+                                                    />
+                                                    <Text id="PurOrdDesc" />
+                                                    <Label
+                                                        text="PO/AMND Initiator"
+                                                    />
+                                                    <Text id="PurOrdInt" />
+                                                    <Label text="Vendor Name" />
+                                                    <Text id="PurOrdVendor" />
+                                                    <Label text="CN Date" />
+                                                    <Text id="idCnDate" />
+                                                </f:content>
+                                            </f:SimpleForm>
+                                            <layoutData>
+                                                <l:GridData
+                                                    span="XL2 L4"
+                                                    linebreakL="false"
+                                                    linebreakM="false"
+                                                    linebreakS="false"
+                                                />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <f:SimpleForm
+                                                id="SimpleFormChange354wide"
+                                                editable="false"
+                                                layout="ResponsiveGridLayout"
+                                                labelSpanXL="4"
+                                                labelSpanL="3"
+                                                width="800px"
+                                                labelSpanM="4"
+                                                labelSpanS="12"
+                                                adjustLabelSpan="false"
+                                                emptySpanXL="0"
+                                                emptySpanL="4"
+                                                emptySpanM="0"
+                                                emptySpanS="0"
+                                                columnsXL="2"
+                                                columnsL="2"
+                                                columnsM="2"
+                                                singleContainerFullSize="false"
+                                            >
+                                                <f:content>
+                                                    <Label text="Plant Name" />
+                                                    <Text id="idPlant" />
+                                                    <Label
+                                                        text="Document Type"
+                                                    />
+                                                    <Text id="PurDocType" />
+                                                    <Label text="PO Date" />
+                                                    <Text id="PurOrdDt" />
+                                                    <Label
+                                                        text="PO/AMND Status"
+                                                    />
+                                                    <Text id="PurOrdSts" />
+                                                </f:content>
+                                            </f:SimpleForm>
+                                        </VBox>
+                                    </l:content>
+                                </l:Grid>
                             </IconTabFilter>
                         </items>
                     </IconTabBar>
                 </content>
+                <footer>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button
+                            text="Query"
+                            id="btnQuery"
+                            enabled="true"
+                            icon="sap-icon://sys-help"
+                            type="Emphasized"
+                            press="handleSelectDialogPress"
+                        />
+                        <Button
+                            text="Verified"
+                            visible="true"
+                            enabled="true"
+                            id="btnReview"
+                            type="Emphasized"
+                            press="handleDialogPressReview"
+                        />
+                        <Button
+                            text="Approve"
+                            enabled="true"
+                            id="btnApprove"
+                            icon="sap-icon://accept"
+                            press="SelectDialogPressApprove"
+                            type="Accept"
+                        />
+                        <Button
+                            text="PO Release"
+                            visible="false"
+                            id="btnApproveRelese"
+                            icon="sap-icon://accept"
+                            press="SelectDialogPressPORelease"
+                            type="Accept"
+                        />
+                        <Button
+                            text="Reject"
+                            class="rejetbtn"
+                            enabled="true"
+                            id="btnReject"
+                            icon="sap-icon://decline"
+                            press="SelectDialogPressReject"
+                            type="Reject"
+                        />
+                    </OverflowToolbar>
+                </footer>
             </Page>
         </pages>
     </App>

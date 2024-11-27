@@ -1,0 +1,20 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+>
+    <SelectDialog
+        title="{i18n>select}"
+        search="_handleValueHelpSearchUser"
+        confirm="_handleValueHelpCloseUser"
+        noDataText="{i18n>notfound}"
+        items="{ path:'/results' }"
+    >
+        <StandardListItem
+            title="{NameFirst} {NameLast}"
+            description="{Bname}"
+            type="Active"
+            iconInset="false"
+            iconDensityAware="false"
+        />
+    </SelectDialog>
+</c:FragmentDefinition>

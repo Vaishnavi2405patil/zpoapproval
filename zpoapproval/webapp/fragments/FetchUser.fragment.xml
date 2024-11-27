@@ -1,0 +1,18 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+>
+    <SelectDialog
+        id="selectDialog"
+        title="Users"
+        items="{fetchuser>/results}"
+        confirm=".onValueHelpDialogClose"
+        cancel=".onValueHelpDialogClose"
+    >
+        <StandardListItem
+            title="{fetchuser>USERNAME}"
+            description="{fetchuser>EMAIL_ID}"
+            info="{fetchuser>USERID}"
+        />
+    </SelectDialog>
+</c:FragmentDefinition>
