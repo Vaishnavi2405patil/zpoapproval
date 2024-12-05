@@ -516,7 +516,7 @@ sap.ui.define(
         var aItems = this.getView().byId("UploadCollection").getItems();
         return "Uploaded (" + aItems.length + ")";
       },
-      handleSelectDialogPress: function () {
+      handleSelectDialogPress: function (oEvent) {
         debugger;
         var opreUsrModel = new sap.ui.model.odata.ODataModel(
           "/sap/opu/odata/sap/ZVECV_PURCHASE_ORDER_APPROVAL_SRV/",
@@ -837,7 +837,7 @@ sap.ui.define(
         var genericUser = sap.ui.getCore().byId("txtgenericuser").getText();
         var txtOTP = sap.ui.getCore().byId("idOTP").getValue();
         if (genericUser === "X") {
-          oModel.raed(
+          oModel.read(
             "/CheckOTPSet(PO_NO='" +
               po +
               "',UserID'" +
@@ -852,7 +852,7 @@ sap.ui.define(
                   return;
                 } else {
                   oModel.create("/UserApprovalSet", oItems, {
-                    success: function () {
+                    success: function (odata,oResponse) {
                       var smsg =
                         POType + po + " has been Successfully Approved";
                       that.OnCancelApprove();
@@ -860,14 +860,33 @@ sap.ui.define(
                       that.RefreshMasterList();
                       that.navtoMasterPage();
                     },
-                    error: function () {},
+                    error: function (oError) {},
                   });
                 }
               },
-              error: function (oResponse) {},
+              error: function (oError) {
+
+              },
+            });
+
+         }
+         else{
+          oModel.create("/UserApprovalSet", oItems, {
+            success: function(odata, oResponse) {
+  
+              var smsg = POType + po + " has been Successfully Approved";
+              that.OnCancelApprove();
+              MessageToast.show(smsg);
+              that.RefreshMasterList();
+              that.navtoMasterPage();
+  
+            },
+            error: function(oError) {
+              
             }
-          );
-        }
+  
+          });
+         }
       },
 
       OnSubmitPORelease: function (oEvent) {

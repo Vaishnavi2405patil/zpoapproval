@@ -2,7 +2,7 @@ sap.ui.define([
 	"sap/ui/test/Opa5"
 ], function (Opa5) {
 	"use strict";
-	var sViewName = "App";
+	var sViewName = "SApp";
 	
 	Opa5.createPageObjects({
 		onTheAppPage: {
@@ -16,9 +16,9 @@ sap.ui.define([
 						id: "app",
 						viewName: sViewName,
 						success: function () {
-							Opa5.assert.ok(true, "The " + sViewName + " view is displayed");
+							Opa5.assert.ok(true, "The SApp view is displayed");
 						},
-						errorMessage: "Did not find the " + sViewName + " view"
+						errorMessage: "Did not find the view"
 					});
 				}
 			}
