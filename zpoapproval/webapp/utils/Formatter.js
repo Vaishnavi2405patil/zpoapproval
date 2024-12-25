@@ -1,7 +1,9 @@
-sap.ui.define( function()
+sap.ui.define([], function()
  {
 	"use strict";
-  var Formatter={status:function(sStatus){
+  var Formatter={
+    status:function(sStatus)
+    {
     if(sStatus === "PO"){
         return "PO no";
 
@@ -10,6 +12,7 @@ return "SA no";
      }else if(sStatus === "CHANGE"){
            return "Amd CN no";
     }
-  }}
+  }
+}
 	return  Formatter;
 });

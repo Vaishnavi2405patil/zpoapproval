@@ -4,10 +4,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'zpoapproval/utils/Formatter',
 	"sap/m/MessageBox",
 	'sap/ui/model/json/JSONModel',
 	"sap/ui/core/routing/History",
-	"sap/ui/model/Sorter"], function (Controller) {
+	"sap/ui/model/Sorter"], function (Controller,Formatter,Filter,MessageBox,MessageToast,JSONModel,History,Sorter) {
   "use strict";
 
   return Controller.extend("zpoapproval.controller.POApprovalMaster", {
+    formatter: Formatter,
     onInit: function () {
       var that = this;
       this._UserID = sap.ushell.Container.getService("UserInfo").getId();
@@ -23,13 +24,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'zpoapproval/utils/Formatter',
         error: function () {},
       });
       this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-      this._oRouter
-        .getRoute("POApprovalMaster")
-        .attachPatternMatched(this._onPatternMatched, this);
+      this._oRouter.getRoute("POApprovalMaster").attachPatternMatched(this._onPatternMatched, this);
       this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-      this._oRouter
-        .getRoute("FirstPage1")
-        .attachPatternMatched(this._onEditMatched, this);
+      this._oRouter.getRoute("FirstPage1").attachPatternMatched(this._onEditMatched, this);
       this._Flag = "false";
     },
     _onEditMatched: function (oEvent) {
@@ -41,11 +38,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'zpoapproval/utils/Formatter',
       oListDevAppr.removeSelections(true);
       oListToBeApprove.removeSelections(true);
       oListAlApproved.removeSelections(true);
-      /*for (var i = 0; i < oListToBeApprove.getItems.length; i++) {
-        if (oListToBeApprove.getItems()[i].getSelected() === true) {
-            
-        }
-        }*/
+
     },
     _onPatternMatched: function (oEvent) {
       var TempValue = this.getView().byId("txtTempValue");
@@ -111,7 +104,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'zpoapproval/utils/Formatter',
           oListAlApproved.setModel(oModelData);
         },
         error: function () {
-          //	MessageBox.error("error");
+         
         },
       });
 
@@ -200,7 +193,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'zpoapproval/utils/Formatter',
       var postatus = "";
       var TemPStatusforAlApp = "";
       var StatusDevAppr = "";
-      var Sid = this.getView().sId;
+      //var Sid = this.getView().sId;
+      var Sid = this.getView().getId();
       if (PoStatus === "In Query") {
         postatus = "Q";
       } else if (PoStatus === "In Approval") {
@@ -237,10 +231,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'zpoapproval/utils/Formatter',
       }
 
       if (this._prevSelect) {
-        this._prevSelect.$().css("background-color", "");
+        this._prevSelect.$().css('background-color', '');
       }
       var item = e.getParameter("listItem");
-      item.$().css("background-color", "#D3D3D3");
+      item.$().css('background-color', '#D3D3D3');
 
       this._prevSelect = item;
     },
@@ -258,7 +252,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'zpoapproval/utils/Formatter',
 			}
       var objEdit = oEvent.getSource().getBindingContext().getObject();
       var postatus = "";
-      var Sid = this.getView().sId;	
+   //   var Sid = this.getView().sId;	
+      var Sid = this.getView().getId();	
+      
       var TemPStatusforAlApp = "";
       var StatusDevAppr = "";
       if (objEdit.PO_Status === "In Query") {
@@ -332,7 +328,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'zpoapproval/utils/Formatter',
       jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialogFilter);
 			this._oDialogFilter.open();
      
-    },
+    },  
     handleConfirm:function(oEvent){
       var query = oEvent.getSource().getSelectedFilterItems();
       var oBinding = this.byId("listPO").getBinding("items");
@@ -502,7 +498,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'zpoapproval/utils/Formatter',
 
         error: function (e) {
           
-        },
+        }
       });
     },
   });

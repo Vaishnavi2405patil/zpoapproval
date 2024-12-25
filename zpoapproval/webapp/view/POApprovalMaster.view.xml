@@ -3,309 +3,126 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
     xmlns="sap.m"
+
     xmlns:html="http://www.w3.org/1999/xhtml"
 >
-    <App>
-        <pages>
-            <Page
-                id="idPage"
-                title="My Purchase Orders"
-            >
-                <subHeader>
-                    <Toolbar>
-                        <SearchField
-                            id="idSearchSo"
-                            placeholder="Search by PO Number"
-                            search="onSearch"
-                        />
-                        <Button
-                            id="btnfilter"
-                            icon="sap-icon://filter"
-                            tooltip="{i18n>refreshButtonTooltip}"
-                            press="handleOpenDialog"
-                        />
-                    </Toolbar>
-                </subHeader>
-                <content>
-                    <Text
-                        id="txtTempValue"
-                        type="text"
-                        visible="false"
-                    />
-                    <Label
-                        id="lblUser_dept"
-                        type="text"
-                        visible="false"
-                    />
-                    <Text
-                        id="txtTemPO"
-                        type="text"
-                        visible="false"
-                    />
-                    <Text
-                        id="txtTemPOSelctionChange"
-                        type="text"
-                        visible="false"
-                    />
-                    <Text
-                        id="idtextPocount"
-                        visible="false"
-                    />
-                    <Text
-                        id="idtextPocountAlredyAproved"
-                        visible="false"
-                    />
-                    <Text
-                        id="idtextPocountDevAppr"
-                        visible="false"
-                    />
-                    <Text
-                        id="iddept"
-                        visible="false"
-                    />
-                    <IconTabBar
-                        id="idIconTabBarNoIcons"
-                        applyContentPadding="false"
-                        expanded="{device>/isNoPhone}"
-                        expandable="false"
-                        class="sapUiResponsiveContentPadding"
-                        select="OnSelectTab"
-                    >
-                        <items>
-                            <IconTabFilter
-                                text="Approved on Deviation"
-                                key="DevAppr"
-                                id="idDevAppr"
-                                visible="true"
-                            >
-                                <List
-                                    items="{path:'/results',sorter: [{ path: 'PoType', descending: false},{ path: 'Rush', descending: true},{ path: 'Rush_Date', descending: true},{ path: 'Rush_Time', descending: true},{ path: 'Received_Time', descending: true},{ path: 'Received_Date', descending: true}]}"
-                                    noDataText="No PO Approve"
-                                    id="listPODevAppr"
-                                    mode="SingleSelectMaster"
-                                    selectionChange="onSelectionChange"
-                                    updateFinished="attachUpdateFinished"
-                                    class="clsListDevAppr"
-                                    growing="true"
-                                    growingScrollToLoad="true"
-                                    growingThreshold="100"
-                                >
-                                    <items>
-                                        <ObjectListItem
-                                           title="{ path: 'PoType', formatter: 'POApproval.ZPOApproval.utils.Formatter.status' }:{PO_No}"
-                                            class="clsListDevAppr"
-                                            type="Navigation"
-                                            press="onListItemPres"
-                                            number="{PO_Amount}"
-                                            numberUnit="{PO_Currency}"
-                                        >
-                                            <firstStatus>
-                                                <ObjectStatus
-                                                    text="{Rush}"
-                                                    state="Error"
-                                                />
-                                            </firstStatus>
-                                            <secondStatus>
-                                                <ObjectStatus
-                                                    text="{PO_Status}"
-                                                    visible="true"
-                                                    state="Success"
-                                                    class="sapUiMediumMarginTop"
-                                                />
-                                            </secondStatus>
-                                            <attributes>
-                                                <ObjectAttribute
-                                                    text="{Document_Type}"
-                                                    class="clsDocType"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Plan}"
-                                                    class="PlantAttribute"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Vendor}"
-                                                    class="clsvendor"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Rush_Time}"
-                                                    visible="false"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Rush_Date}"
-                                                    visible="false"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Received_Time}"
-                                                    visible="false"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Received_Date}"
-                                                    visible="false"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{PoType}"
-                                                    visible="false"
-                                                />
-                                            </attributes>
-                                        </ObjectListItem>
-                                    </items>
-                                </List>
-                            </IconTabFilter>
-                            <IconTabFilter
-                                text="Pending For My Approval"
-                                key="ToBeApprove"
-                            >
-                                <List
-                                   	items="{path:'/results',sorter: [{ path: 'PoType', descending: false},{ path: 'Rush', descending: true},{ path: 'Rush_Date', descending: true},{ path: 'Rush_Time', descending: true},{ path: 'Received_Date', descending: true},{ path: 'Received_Time', descending: true}]}"
-                                    noDataText="No PO for Approval"
-                                    id="listPO"
-                                    mode="SingleSelectMaster"
-                                    selectionChange="onSelectionChange"
-                                    updateFinished="attachUpdateFinished"
-                                    growing="true"
-                                    growingScrollToLoad="true"
-                                    growingThreshold="100"
-                                >
-                                    <items>
-                                        <ObjectListItem
-                                          
-                                             title="{ path: 'PoType', formatter: 'POApproval.ZPOApproval.utils.Formatter.status' }:{PO_No}"
-                                            type="Active"
-                                            press="onListItemPress"
-                                            number="{PO_Amount}"
-                                            numberUnit="{PO_Currency}"
-                                        >
-                                            <firstStatus>
-                                                <ObjectStatus
-                                                    text="{Rush}"
-                                                    state="Error"
-                                                />
-                                            </firstStatus>
-                                            <secondStatus>
-                                                <ObjectStatus
-                                                    text="{PO_Status}"
-                                                    visible="true"
-                                                    state="Success"
-                                                    class="sapUiMediumMarginTop"
-                                                />
-                                            </secondStatus>
-                                            <attributes>
-                                                <ObjectAttribute
-                                                    text="{Document_Type}"
-                                                    class="clsDocType"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Plant}"
-                                                    class="PlantAttributes"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Vendor}"
-                                                    class="clsvendor"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Rush_Time}"
-                                                    visible="false"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Rush_Date}"
-                                                    visible="false"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Received_Time}"
-                                                    visible="false"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Received_Date}"
-                                                    visible="false"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{PoType}"
-                                                    visible="false"
-                                                />
-                                            </attributes>
-                                        </ObjectListItem>
-                                    </items>
-                                </List>
-                            </IconTabFilter>
-                            <IconTabFilter
-                                text="Approved By Me"
-                                key="AlreadyApproved"
-                            >
-                                <List
-                                	items="{path:'/results',sorter: [{ path: 'PoType', descending: false},{ path: 'Rush', descending: true},{ path: 'Rush_Date', descending: false},{ path: 'Rush_Time', descending: false},{ path: 'Received_Time', descending: false},{ path: 'Received_Date', descending: false}]}"
-                                  
-                                    noDataText="No PO Approved"
-                                    id="listPOAlrdyApproved"
-                                    mode="SingleSelectMaster"
-                                    selectionChange="onSelectionChange"
-                                    growing="true"
-                                    growingScrollToLoad="true"
-                                    growingThreshold="100"
-                                >
-                                    <items>
-                                        <ObjectListItem
-                                            title="{ path: 'PoType', formatter: 'POApproval.ZPOApproval.utils.Formatter.status' }:{PO_No}"
-                                            type="Active"
-                                            press="onListItemPress"
-                                            number="{PO_Amount}"
-                                            numberUnit="{PO_Currency}"
-                                        >
-                                            <firstStatus>
-                                                <ObjectStatus
-                                                    text="{Rush}"
-                                                    state="Error"
-                                                />
-                                            </firstStatus>
-                                            <secondStatus>
-                                                <ObjectStatus
-                                                    text="{PO_Status}"
-                                                    visible="true"
-                                                    state="Success"
-                                                    class="sapUiMediumMarginTop"
-                                                />
-                                            </secondStatus>
-                                            <attributes>
-                                                <ObjectAttribute
-                                                    text="{Document_Type}"
-                                                    class="clsDocType"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Plant}"
-                                                    class="PlantAttributes"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Vendor} "
-                                                    class="clsvendor"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Rush_Time}"
-                                                    visible="false"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Rush_Date}"
-                                                    visible="false"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Received_Time}"
-                                                    visible="false"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{Received_Date}"
-                                                    visible="false"
-                                                />
-                                                <ObjectAttribute
-                                                    text="{PoType}"
-                                                    visible="false"
-                                                />
-                                            </attributes>
-                                        </ObjectListItem>
-                                    </items>
-                                </List>
-                            </IconTabFilter>
-                        </items>
-                    </IconTabBar>
-                </content>
-            </Page>
-        </pages>
-    </App>
+  <App>
+		<pages>
+			<Page title="My Purchase Orders">
+				<subHeader>
+					<Toolbar>
+						<SearchField id="idSearchSo" placeholder="Search by PO Number" search="onSearch"></SearchField>
+						<Button id="btnfilter" icon="sap-icon://filter" tooltip="{i18n>refreshButtonTooltip}" press="handleOpenDialog"/>
+						<ToolbarSpacer/>
+					</Toolbar>
+				</subHeader>
+				<content>
+					<Text id="txtTempValue" type="text" visible="false"/>
+					<Label id="lblUser_dept" type="text" visible="false"/>
+					<Text id="txtTemPO" type="text" visible="false"/>
+					<Text id="txtTemPOSelctionChange" type="text" visible="false"/>
+					<Text id="idtextPocount" visible="false"/>
+					<Text id="idtextPocountAlredyAproved" visible="false"/>
+					<Text id="idtextPocountDevAppr" visible="false"/>
+					<Text id="iddept" visible="false"/>
+					<IconTabBar id="idIconTabBarNoIcons" applyContentPadding="false" expanded="{device>/isNoPhone}" expandable="false"
+						class="sapUiResponsiveContentPadding" select="OnSelectTab">
+						<items>
+							<IconTabFilter text="Approved on Deviation" key="DevAppr" id="idDevAppr" visible="true">
+								<List
+									items="{path:'/results',sorter: [{ path: 'PoType', descending: false},{ path: 'Rush', descending: true},{ path: 'Rush_Date', descending: true},{ path: 'Rush_Time', descending: true},{ path: 'Received_Time', descending: true},{ path: 'Received_Date', descending: true}]}"
+									noDataText="No PO Approved" id="listPODevAppr" mode="SingleSelectMaster" selectionChange="onSelectionChange"
+									updateFinished="attachUpdateFinished" class= "clsListDevAppr" growing="true" growingScrollToLoad="true" growingThreshold="100">
+									<items>
+										<ObjectListItem title="{ path: 'PoType', formatter: '.formatter.status' }:{PO_No}" class= "clsListDevAppr" type="Navigation" press="onListItemPress" number="{PO_Amount}" numberUnit="{PO_Currency}">
+												<firstStatus>
+												<ObjectStatus text="{Rush}" state="Error" />
+											</firstStatus>
+											<secondStatus >
+
+												<ObjectStatus text="{PO_Status}" visible="true" state="Success" class="sapUiMediumMarginTop"/>
+											</secondStatus>
+											<!--<secondStatus >
+												<ObjectStatus text="{User_Dept}" visible="false"/>
+											</secondStatus>-->
+											<attributes>
+												<ObjectAttribute text="{Document_Type}" class="clsDocType"/>
+												<ObjectAttribute text="{Plant}" class="PlantAttributes"/>
+												<ObjectAttribute text="{Vendor} " class="clsvendor"/>
+												<ObjectAttribute text="{Rush_Time}" visible="false"/>
+												<ObjectAttribute text="{Rush_Date}" visible="false"/>
+												<ObjectAttribute text="{Received_Time}" visible="false"/>
+												<ObjectAttribute text="{Received_Date}" visible="false"/>
+												<ObjectAttribute  text="{PoType}" visible="false"/>
+											</attributes>
+										</ObjectListItem>
+									</items>
+								</List>
+							</IconTabFilter>
+							<IconTabFilter text="Pending For My Approval" key="ToBeApprove">
+								<List
+									items="{path:'/results',sorter: [{ path: 'PoType', descending: false},{ path: 'Rush', descending: true},{ path: 'Rush_Date', descending: true},{ path: 'Rush_Time', descending: true},{ path: 'Received_Date', descending: true},{ path: 'Received_Time', descending: true}]}"
+									noDataText="No PO for Approval" id="listPO" mode="SingleSelectMaster" selectionChange="onSelectionChange"
+									updateFinished="attachUpdateFinished" growing="true" growingScrollToLoad="true" growingThreshold="100">
+									<items>
+										<ObjectListItem title="{ path: 'PoType', formatter: '.formatter.status' }:{PO_No}" type="Active" press="onListItemPress" number="{PO_Amount}" numberUnit="{PO_Currency}" >
+										<firstStatus>
+												<ObjectStatus text="{Rush}" state="Error" />
+											</firstStatus>
+											<secondStatus >
+												<ObjectStatus text="{PO_Status}" visible="true" state="Success" class="sapUiMediumMarginTop"/>
+											</secondStatus>
+										<!--	<firstStatus>
+												<ObjectStatus text="{PO_Status}" state="Success" class="sapUiMediumMarginTop"/>
+											</firstStatus>
+											<secondStatus >
+												<ObjectStatus text="{Rush}" visible="true" state="Error"/>
+											</secondStatus>-->
+											<attributes>
+												<ObjectAttribute text="{Document_Type}" class="clsDocType"/>
+												<ObjectAttribute text="{Plant}" class="PlantAttributes"/>
+												<ObjectAttribute text="{Vendor} " class="clsvendor"/>
+												<ObjectAttribute text="{Rush_Time}" visible="false"/>
+												<ObjectAttribute text="{Rush_Date}" visible="false"/>
+												<ObjectAttribute text="{Received_Time}" visible="false"/>
+												<ObjectAttribute text="{Received_Date}" visible="false"/>
+												<ObjectAttribute  text="{PoType}" visible="false"/>
+											</attributes>
+										</ObjectListItem>
+									</items>
+								</List>
+							</IconTabFilter>
+							<IconTabFilter text="Approved By Me" key="AlreadyApproved">
+								<List
+									items="{path:'/results',sorter: [{ path: 'PoType', descending: false},{ path: 'Rush', descending: true},{ path: 'Rush_Date', descending: false},{ path: 'Rush_Time', descending: false},{ path: 'Received_Time', descending: false},{ path: 'Received_Date', descending: false}]}"
+									noDataText="No PO Approved" id="listPOAlrdyApproved" mode="SingleSelectMaster" selectionChange="onSelectionChange" growing="true" growingScrollToLoad="true" growingThreshold="100">
+									<items>
+										<ObjectListItem title="{ path: 'PoType', formatter: '.formatter.status' }:{PO_No}"  type="Active" press="onListItemPress" number="{PO_Amount}" numberUnit="{PO_Currency}">
+												<firstStatus>
+												<ObjectStatus text="{Rush}" state="Error" />
+											</firstStatus>
+											<secondStatus >
+												<ObjectStatus text="{PO_Status}" visible="true" state="Success" class="sapUiMediumMarginTop"/>
+											</secondStatus>
+											<attributes>
+												<ObjectAttribute text="{Document_Type}" class="clsDocType"/>
+												<ObjectAttribute text="{Plant}" class="PlantAttributes"/>
+												<ObjectAttribute text="{Vendor} " class="clsvendor"/>
+												<ObjectAttribute text="{Rush_Time}" visible="false"/>
+												<ObjectAttribute text="{Rush_Date}" visible="false"/>
+												<ObjectAttribute text="{Received_Time}" visible="false"/>
+												<ObjectAttribute text="{Received_Date}" visible="false"/>
+												<ObjectAttribute  text="{PoType}" visible="false"/>
+											</attributes>
+										</ObjectListItem>
+									</items>
+								</List>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+			</Page>
+		</pages>
+	</App>
+                             
 </mvc:View>

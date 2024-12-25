@@ -19,6 +19,15 @@ div#__xmlview2--SimpleFormChange354wide--Form--Grid {
     font-size: .875rem;
     width: 573px;
 }
+.sapMITH.sapContrastPlus.sapMITHBackgroundDesignSolid.sapMITBTextOnly.sapMITBInLine.sapMITBTextOnly.sapUiResponsiveContentPadding
+{
+   background:  #0c0c61  !important;
+   
+}
+/* .sapMITBItem.sapMITBItemNoCount.sapMITBVertical.sapMITBFilter.sapMITBFilterDefault.sapMITBSelected{
+     width: 79px !important; 
+
+} */
 
 .sapMSplitContainerDetail .sapMITB.sapUiResponsiveContentPadding > .sapMITBContainerContent > .sapMITBContent {
     padding: 1rem;
@@ -112,6 +121,7 @@ div#__xmlview1--SimpleFormChange354wide--Form--Grid {
 .sapMITBSelected .sapMITBFilterDefault {
     background: #e00017;
     color: white;
+    
 }
 
 /*for icon tab inner icon red*/
@@ -307,8 +317,9 @@ sapMBtnInner.sapMBtnReject:hover
 
 .sapMITBHead {
     font-size: 0.75rem;
-     padding-top: 24px; 
-     margin-top: 0px; 
+   padding-top: 24px;
+    margin-top: 0px;
+   
 }
 
 .sapMITBTextOnly {
@@ -346,6 +357,8 @@ sapMBtnInner.sapMBtnReject:hover
 }
 .sapUiMedia-Std-Desktop .sapMSplitContainer.sapMSplitContainerShowHide .sapMITH{
 	padding: 0 0rem;
+    /* height: 90px;
+    width: 500px; */
 }
 
 
@@ -681,7 +694,6 @@ html.sap-phone .sapMITB .sapMITBHead {
     text-align: right;
     vertical-align: top;
 }
-
 
 .sapMLIBImgNav {
     font-family: 'Fiori2';
