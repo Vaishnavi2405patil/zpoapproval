@@ -489,11 +489,11 @@ sap.ui.define(
           true
         );
         var oPONo = this.getView().byId("objcmp").getTitle();
-        oModel.setHeader({
+        oModel.setHeaders({
           "X-Requested-With": "X",
           DocumentID: sItemToDeleteId,
         });
-        oModel.remove("/POAttachmentsSet('" + oPONO + "')", {
+        oModel.remove("/POAttachmentsSet('" +oPONo+ "')", {
           method: "DELETE",
           success: function (odata, oResponse) {
             MessageBox.success("Attachment Deleted Successfully", {
@@ -1457,7 +1457,7 @@ sap.ui.define(
         filters.push(oPOH);
         Attachments.setBusy(true);
 
-        if (PONO !== "") {
+        if (PONo !== "") {
           oModel.read("/POAttachmentsSet", {
             filters: filters,
             success: function (odata, oResponse) {
