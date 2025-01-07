@@ -28,6 +28,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'zpoapproval/utils/Formatter',
       this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
       this._oRouter.getRoute("FirstPage1").attachPatternMatched(this._onEditMatched, this);
       this._Flag = "false";
+     // this.getView().byId("idDevAppr").addStyleClass("myApproveOnDeviation");
     },
     _onEditMatched: function (oEvent) {
       var oListDevAppr = this.getView().byId("listPODevAppr");
@@ -193,8 +194,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'zpoapproval/utils/Formatter',
       var postatus = "";
       var TemPStatusforAlApp = "";
       var StatusDevAppr = "";
-      //var Sid = this.getView().sId;
-      var Sid = this.getView().getId();
+      var Sid = this.getView().sId;
+      //var Sid = this.getView().getId();
       if (PoStatus === "In Query") {
         postatus = "Q";
       } else if (PoStatus === "In Approval") {
@@ -487,7 +488,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'zpoapproval/utils/Formatter',
           oDept.setText(odata.Dept);
           if (odata.Dept === "PUR") {
             oDevApprTab.setVisible(true);
-            oTabSelect.setSelectedKey("DevAppr");
+            oTabSelect.setSelectedKey("ToBeApprove");
           } else {
             oTabSelect.setSelectedKey("ToBeApprove");
             oDevApprTab.setVisible(false);

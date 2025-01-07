@@ -11,7 +11,7 @@
 >
     <App>
 		<pages>
-			<Page title="Volvo Eicher Commercial Vehicles Purchase Order Approval" navButtonPress="handleNavButtonPress"
+			<Page title=" VE Commercial Vehicles Purchase Order Approval" navButtonPress="handleNavButtonPress"
 				showNavButton="{device>/system/phone}">
 				<content>
 					<Text id="idViewForPOList" visible="false"/>
